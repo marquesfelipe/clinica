@@ -6,7 +6,7 @@ import java.io.Serializable;
 public enum Especialidade implements Serializable {
 	
 	CARDIOLOGISTA("Cardiologista"),
-	CLINICO_GERAL("Clï¿½nico Geral"),
+	CLINICO_GERAL("Clínico Geral"),
 	DERMATOLOGISTA("Dermatologista"),
 	OTORRINOLARINGOLOGISTA("Otorrinolaringologista"),
 	PEDIATRA("Pediatra"),
