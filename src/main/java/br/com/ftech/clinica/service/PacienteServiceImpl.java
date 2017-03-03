@@ -3,10 +3,14 @@ package br.com.ftech.clinica.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.ftech.clinica.domain.Paciente;
 import br.com.ftech.clinica.repository.PacienteRepository;
 
+@Service
+@Transactional
 public class PacienteServiceImpl implements PacienteService{
 	
 	@Autowired
