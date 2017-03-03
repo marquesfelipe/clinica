@@ -33,7 +33,7 @@ public class PacienteController {
 			String dataFormatada = format2.format(parsed);
 			dataNascimento = format2.parse(dataFormatada);
 			paciente.setDataNascimento(dataNascimento);
-			pacienteRepository.salvaPaciente(paciente);
+			pacienteRepository.save(paciente);
 			model.addAttribute("paciente", new Paciente());
 			model.addAttribute("mensagem", new Mensagem("Sucesso ao cadastrar o paciente", TipoMensagem.SUCESSO));
 		} catch (ParseException e) {
@@ -45,7 +45,7 @@ public class PacienteController {
 
 	@RequestMapping(value = "/listar.do", method = RequestMethod.GET)
 	public String listar(Model model) {
-		List<Paciente> pacientes = pacienteRepository.listaPacientes();
+		List<Paciente> pacientes = pacienteRepository.findAllByOrderByIdAsc();
 		model.addAttribute("pacientes", pacientes);
 
 		return "listarPacientes";
@@ -53,7 +53,7 @@ public class PacienteController {
 
 	@RequestMapping(value = "/excluir.do", method = RequestMethod.GET)
 	public String excluir(Integer idPaciente, Model model) {
-		pacienteRepository.excluiPaciente(idPaciente);
+	//	pacienteRepository.excluiPaciente(idPaciente);
 		model.addAttribute("mensagem", new Mensagem("Sucesso ao excluir o paciente", TipoMensagem.SUCESSO));
 
 		return "forward:/paciente/listar.do";

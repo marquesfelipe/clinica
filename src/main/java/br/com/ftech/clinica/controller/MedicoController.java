@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.ftech.clinica.domain.Medico;
 import br.com.ftech.clinica.domain.enumeration.Especialidade;
-import br.com.ftech.clinica.repository.MedicoRepository;
+import br.com.ftech.clinica.service.MedicoServiceImpl;
 import br.com.ftech.clinica.util.Mensagem;
 import br.com.ftech.clinica.util.Mensagem.TipoMensagem;
 
@@ -20,11 +20,11 @@ import br.com.ftech.clinica.util.Mensagem.TipoMensagem;
 public class MedicoController {
 	
 	@Autowired
-	private MedicoRepository medicoRepository;
+	private MedicoServiceImpl medicoRepository;
 
 	@RequestMapping(value="/cadastrar.do", method=RequestMethod.POST)
 	public String cadastrar(Medico medico, Model model) {
-		medicoRepository.salvaMedico(medico);
+//		medicoRepository.salvaMedico(medico);
 		model.addAttribute("medico", new Medico());
 		model.addAttribute("especialidades", Especialidade.values());
 		model.addAttribute("mensagem", new Mensagem("Sucesso ao cadastrar o m�dico", TipoMensagem.SUCESSO));
@@ -34,15 +34,15 @@ public class MedicoController {
 	
 	@RequestMapping(value="/listar.do", method=RequestMethod.GET)
 	public String listar(Model model) {
-		List<Medico> medicos = medicoRepository.listaMedicos();
-		model.addAttribute("medicos", medicos);
+//		List<Medico> medicos = medicoRepository.listaMedicos();
+	//	model.addAttribute("medicos", medicos);
 		
 		return "listarMedicos";
 	}
 	
 	@RequestMapping(value="/excluir.do", method=RequestMethod.GET)
 	public String excluir(Integer idMedico, Model model) {
-		medicoRepository.excluiMedico(idMedico);
+	//	medicoRepository.excluiMedico(idMedico);
 		model.addAttribute("mensagem", new Mensagem("Sucesso ao excluir o m�dico", TipoMensagem.SUCESSO));
 		
 		return "forward:/medico/listar.do";

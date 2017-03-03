@@ -36,7 +36,7 @@ public class NavegacaoController {
 	@RequestMapping(value="/preparaCadastroConsulta.do")
 	public String redirecionaCadastroConsulta(Map<String, Object> map) {
 		map.put("especialidades", Especialidade.values());
-		map.put("pacientes", pacienteRepository.listaPacientes());
+	//	map.put("pacientes", pacienteRepository.listaPacientes());
 		map.put("consulta", new Consulta());
 		
 		return "cadastrarConsulta";
@@ -44,7 +44,7 @@ public class NavegacaoController {
 	
 	@RequestMapping(value="/preparaCadastroAtendimento.do")
 	public String redirecionaCadastroAtendimento(Map<String, Object> map) {
-		map.put("pacientes", pacienteRepository.listaPacientes());
+		//map.put("pacientes", pacienteRepository.listaPacientes());
 		
 		return "listarConsultas";
 	}
