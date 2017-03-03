@@ -10,42 +10,38 @@ import br.com.ftech.clinica.domain.Consulta;
 import br.com.ftech.clinica.domain.Medico;
 import br.com.ftech.clinica.domain.Paciente;
 import br.com.ftech.clinica.domain.enumeration.Especialidade;
-import br.com.ftech.clinica.repository.PacienteRepository;
+import br.com.ftech.clinica.service.PacienteService;
 
 @Controller
 public class NavegacaoController {
 	
 	@Autowired
-	private PacienteRepository pacienteRepository;
+	private PacienteService service;
 	
 	@RequestMapping(value="/preparaCadastroMedico.do")
 	public String redirecionaCadastroMedico(Map<String, Object> map) {
 		map.put("especialidades", Especialidade.values());
-		map.put("medico", new Medico());
-		
+		map.put("medico", new Medico());		
 		return "cadastrarMedico";
 	}
 	
 	@RequestMapping(value="/preparaCadastroPaciente.do")
 	public String redirecionaCadastroPaciente(Map<String, Object> map) {
-		map.put("paciente", new Paciente());
-		
+		map.put("paciente", new Paciente());		
 		return "cadastrarPaciente";
 	}
 	
 	@RequestMapping(value="/preparaCadastroConsulta.do")
 	public String redirecionaCadastroConsulta(Map<String, Object> map) {
 		map.put("especialidades", Especialidade.values());
-	//	map.put("pacientes", pacienteRepository.listaPacientes());
-		map.put("consulta", new Consulta());
-		
+		map.put("pacientes", service.findAllPacientes());
+		map.put("consulta", new Consulta());		
 		return "cadastrarConsulta";
 	}
 	
 	@RequestMapping(value="/preparaCadastroAtendimento.do")
 	public String redirecionaCadastroAtendimento(Map<String, Object> map) {
-		//map.put("pacientes", pacienteRepository.listaPacientes());
-		
+		map.put("pacientes", service.findAllPacientes());		
 		return "listarConsultas";
 	}
 }

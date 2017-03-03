@@ -9,4 +9,6 @@ import br.com.ftech.clinica.domain.Paciente;
 public interface PacienteRepository extends JpaRepository<Paciente, Long>{
 	
 	public List<Paciente> findAllByOrderByIdAsc();
+
+	public Paciente findByNome(String name);
 }

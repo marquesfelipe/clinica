@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.ftech.clinica.domain.Paciente;
-import br.com.ftech.clinica.repository.PacienteRepository;
+import br.com.ftech.clinica.service.PacienteService;
 import br.com.ftech.clinica.util.Mensagem;
 import br.com.ftech.clinica.util.Mensagem.TipoMensagem;
 
@@ -21,7 +21,7 @@ import br.com.ftech.clinica.util.Mensagem.TipoMensagem;
 public class PacienteController {
 
 	@Autowired
-	private PacienteRepository pacienteRepository;
+	private PacienteService service;
 
 	@RequestMapping(value = "/cadastrar.do", method = RequestMethod.POST)
 	public String cadastrar(Paciente paciente, String data, Model model) {
@@ -33,7 +33,7 @@ public class PacienteController {
 			String dataFormatada = format2.format(parsed);
 			dataNascimento = format2.parse(dataFormatada);
 			paciente.setDataNascimento(dataNascimento);
-			pacienteRepository.save(paciente);
+			service.savePaciente(paciente);
 			model.addAttribute("paciente", new Paciente());
 			model.addAttribute("mensagem", new Mensagem("Sucesso ao cadastrar o paciente", TipoMensagem.SUCESSO));
 		} catch (ParseException e) {
@@ -45,17 +45,15 @@ public class PacienteController {
 
 	@RequestMapping(value = "/listar.do", method = RequestMethod.GET)
 	public String listar(Model model) {
-		List<Paciente> pacientes = pacienteRepository.findAllByOrderByIdAsc();
+		List<Paciente> pacientes = service.findAllPacientes();
 		model.addAttribute("pacientes", pacientes);
-
 		return "listarPacientes";
 	}
 
 	@RequestMapping(value = "/excluir.do", method = RequestMethod.GET)
 	public String excluir(Integer idPaciente, Model model) {
-	//	pacienteRepository.excluiPaciente(idPaciente);
+		service.deletePacienteById(idPaciente);
 		model.addAttribute("mensagem", new Mensagem("Sucesso ao excluir o paciente", TipoMensagem.SUCESSO));
-
 		return "forward:/paciente/listar.do";
 	}
 }

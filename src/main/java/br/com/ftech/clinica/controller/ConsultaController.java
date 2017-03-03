@@ -42,7 +42,7 @@ public class ConsultaController {
 			
 			dataConsulta = sdf.parse(dataFormatada + " " + hora);
 			consulta.setDataConsulta(dataConsulta);
-	//		consultaRepository.salvaConsulta(consulta);
+			service.saveConsulta(consulta);
 			model.addAttribute("mensagem", new Mensagem("Sucesso ao cadastrar a consulta", TipoMensagem.SUCESSO));
 		} catch (ParseException e) {
 			model.addAttribute("mensagem", new Mensagem("Erro ao fazer a convers�o de data/hora. Observe os padr�es a serem seguidos", TipoMensagem.ERRO));
@@ -53,18 +53,16 @@ public class ConsultaController {
 	
 	@RequestMapping(value="/detalharConsulta.do", method=RequestMethod.GET)
 	public String detalhar(Integer idConsulta, Model model) {
-	//	Consulta consulta = consultaRepository.recuperaConsulta(idConsulta);
-	//	model.addAttribute("consulta", consulta);
-		
+		Consulta consulta = service.findById(idConsulta);
+	 	model.addAttribute("consulta", consulta);
 		return "realizarAtendimento";
 	}
 	
 	@RequestMapping(value="/atender.do", method=RequestMethod.POST)
 	public String gravarAtendimento(Consulta consulta, Model model) {
 		consulta.setDataAtendimento(new Date());
-	//	consultaRepository.atualizaConsulta(consulta);
+		service.updateConsulta(consulta);
 		model.addAttribute("mensagem", new Mensagem("Sucesso ao cadastrar o atendimento", TipoMensagem.SUCESSO));
-		
 		return "forward:/preparaCadastroAtendimento.do";
 	}
 	
