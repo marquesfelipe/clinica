@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import br.com.ftech.clinica.domain.Medico;
+import br.com.ftech.clinica.domain.enumeration.Especialidade;
 
 @Repository
 public interface MedicoRepository extends JpaRepository<Medico, Long>{
@@ -15,7 +16,7 @@ public interface MedicoRepository extends JpaRepository<Medico, Long>{
 		Medico findByNome(String nome);
 		
 		@Query("Select m from Medico m where m.especialidade=:especialidade order by m.nome")
-		List<Medico> listaMedicosPorEspecialidade(@Param("especialidade")String especialidade);
+		List<Medico> listaMedicosPorEspecialidade(@Param("especialidade")Especialidade especialidade);
 		
 
 }

@@ -4,9 +4,7 @@
 <%@ taglib prefix="springform" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<tiles:insertDefinition name="template">
-		<tiles:putAttribute name="corpo">
-			<h1>Listar Consultas do Paciente</h1>
+		<h1>Listar Consultas do Paciente</h1>
 			
 			<script type="text/javascript">
 				function carregaConsultasPorPaciente(){
@@ -16,7 +14,7 @@
 					if ($("#paciente").val() != '') {
 				 		$.ajax({
 				  			type: "get",
-				  			url: "${pageContext.request.contextPath}/consulta/listarPorPaciente.do",
+				  			url: "${pageContext.request.contextPath}/consulta/listarPorPaciente",
 				  			data: 'idPaciente=' + $("#paciente").val(),
 				  			success: function(consultas) {
 				  				if (consultas.length == 0) {
@@ -37,7 +35,7 @@
 									        	"<td>" + formataData(dataConsulta) + "</td>" +
 									        	"<td>" + formataData(dataAtendimento) + "</td>" +
 									        	"<td>" +
-									        		"<a href=${pageContext.request.contextPath}/consulta/detalharConsulta.do?idConsulta=" + consulta.id + ">" +
+									        		"<a href=${pageContext.request.contextPath}/consulta/detalharConsulta?idConsulta=" + consulta.id + ">" +
 									        			"<input type=\"button\" value=\"Selecionar\" class=\"btn btn-success\" />" +
 							        				"</a>" + 
 									        	"</td>" +
@@ -97,6 +95,4 @@
 					</tbody>
 				</table>
 			</div>
-		</tiles:putAttribute>
-	</tiles:insertDefinition>
-</html>
+	</html>

@@ -8,6 +8,7 @@ import javax.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
+@PrimaryKeyJoinColumn(name="id")
 public class Paciente extends Usuario{
 	
 	private String nome;

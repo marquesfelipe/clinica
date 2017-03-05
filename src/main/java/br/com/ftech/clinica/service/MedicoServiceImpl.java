@@ -18,7 +18,7 @@ public class MedicoServiceImpl implements MedicoService {
 	private MedicoRepository repository;
 
 	public List<Medico> listaMedicosPorEspecialidade(Especialidade especialidade) {
-		return repository.listaMedicosPorEspecialidade(especialidade.toString());
+		return repository.listaMedicosPorEspecialidade(especialidade);
 	}
 	
 	public List<Medico> findAllMedicos() {

@@ -5,13 +5,11 @@
 <%@ taglib prefix="springform" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<tiles:insertDefinition name="template">
-		<tiles:putAttribute name="corpo">
-			<h1>${(consulta.dataAtendimento == null) ? "Realizar Atendimento" : "Visualizar Atendimento"}</h1>
+		<h1>${(consulta.dataAtendimento == null) ? "Realizar Atendimento" : "Visualizar Atendimento"}</h1>
 			
 			<springform:form method="post" action="${pageContext.request.contextPath}/consulta/atender.do" modelAttribute="consulta">
 				<div style="width: 500px;">
-  					Especialidade: ${consulta.medico.nome}
+  					Médico: ${consulta.medico.nome}
   					<br />
 					Paciente: ${consulta.paciente.nome}
 					<br />
@@ -33,7 +31,7 @@
 					<input type="submit" value="Gravar" class="btn btn-primary" />
 				</c:if>
 				<c:if test="${consulta.dataAtendimento != null}">
-					<a href="${pageContext.request.contextPath}/cadastroAtendimentoPasso1.do">
+					<a href="${pageContext.request.contextPath}/preparaCadastroAtendimento">
 						<input type="button" value="Voltar" class="btn btn-warning" />
 					</a>
 				</c:if>
@@ -43,6 +41,4 @@
 				<springform:hidden path="medico.id" />
 				<springform:hidden path="paciente.id" />
 			</springform:form>
-		</tiles:putAttribute>
-	</tiles:insertDefinition>
 </html>

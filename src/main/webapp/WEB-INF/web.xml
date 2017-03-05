@@ -11,9 +11,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>dispatcher</servlet-name>
-    <url-pattern>*.do</url-pattern>
+    <url-pattern>/</url-pattern>
   </servlet-mapping>
-  <listener>
-    <listener-class>org.apache.tiles.web.startup.simple.SimpleTilesListener</listener-class>
-  </listener>
-</web-app>
+ </web-app>

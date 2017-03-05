@@ -18,30 +18,30 @@ public class NavegacaoController {
 	@Autowired
 	private PacienteService service;
 	
-	@RequestMapping(value="/preparaCadastroMedico.do")
+	@RequestMapping(value="/preparaCadastroMedico")
 	public String redirecionaCadastroMedico(Map<String, Object> map) {
 		map.put("especialidades", Especialidade.values());
 		map.put("medico", new Medico());		
-		return "cadastrarMedico";
+		return "medico.cadastrar.tiles";
 	}
 	
-	@RequestMapping(value="/preparaCadastroPaciente.do")
+	@RequestMapping(value="/preparaCadastroPaciente")
 	public String redirecionaCadastroPaciente(Map<String, Object> map) {
 		map.put("paciente", new Paciente());		
-		return "cadastrarPaciente";
+		return "paciente.adicionar.tiles";
 	}
 	
-	@RequestMapping(value="/preparaCadastroConsulta.do")
+	@RequestMapping(value="/preparaCadastroConsulta")
 	public String redirecionaCadastroConsulta(Map<String, Object> map) {
 		map.put("especialidades", Especialidade.values());
 		map.put("pacientes", service.findAllPacientes());
 		map.put("consulta", new Consulta());		
-		return "cadastrarConsulta";
+		return "consulta.adicionar.tiles";
 	}
 	
-	@RequestMapping(value="/preparaCadastroAtendimento.do")
+	@RequestMapping(value="/preparaCadastroAtendimento")
 	public String redirecionaCadastroAtendimento(Map<String, Object> map) {
 		map.put("pacientes", service.findAllPacientes());		
-		return "listarConsultas";
+		return "consulta.listar.tiles";
 	}
 }

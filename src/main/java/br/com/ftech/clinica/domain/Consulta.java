@@ -1,21 +1,26 @@
 package br.com.ftech.clinica.domain;
 
 
-import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-public class Consulta implements Serializable {
-
-	private static final long serialVersionUID = 7064809078222302493L;
+public class Consulta {
 	
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Long id;
 	private String sintomas;
 	private String receita;
 	
@@ -36,11 +41,11 @@ public class Consulta implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataAtendimento;
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

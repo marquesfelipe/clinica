@@ -4,9 +4,7 @@
 <%@ taglib prefix="springform" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<tiles:insertDefinition name="template">
-		<tiles:putAttribute name="corpo">
-			<h1>Cadastrar Consulta</h1>
+		<h1>Cadastrar Consulta</h1>
 			
 			<script type="text/javascript">
 				function carregaMedicosDaEspecialidade() {
@@ -17,7 +15,7 @@
 					if ($("#especialidade").val() != '') {
 				 		$.ajax({
 				  			type: "get",
-				  			url: "${pageContext.request.contextPath}/medico/listarPorEspecialidade.do",
+				  			url: "${pageContext.request.contextPath}/medico/listarPorEspecialidade",
 				  			data: 'especialidade=' + $("#especialidade").val(),
 				  			success: function(medicos) {
 			                    $.each(medicos, function(i, medico) {    
@@ -69,6 +67,4 @@
 				</div>
 				<input type="submit" value="Gravar" class="btn btn-primary" />
 			</springform:form>
-		</tiles:putAttribute>
-	</tiles:insertDefinition>
-</html>
+	</html>

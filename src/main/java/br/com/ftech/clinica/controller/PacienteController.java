@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.ftech.clinica.domain.Paciente;
+import br.com.ftech.clinica.domain.Role;
 import br.com.ftech.clinica.service.PacienteService;
 import br.com.ftech.clinica.util.Mensagem;
 import br.com.ftech.clinica.util.Mensagem.TipoMensagem;
@@ -23,7 +24,7 @@ public class PacienteController {
 	@Autowired
 	private PacienteService service;
 
-	@RequestMapping(value = "/cadastrar.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
 	public String cadastrar(Paciente paciente, String data, Model model) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");
@@ -33,6 +34,7 @@ public class PacienteController {
 			String dataFormatada = format2.format(parsed);
 			dataNascimento = format2.parse(dataFormatada);
 			paciente.setDataNascimento(dataNascimento);
+			paciente.setRole(Role.ROLE_PACIENTE.toString());
 			service.savePaciente(paciente);
 			model.addAttribute("paciente", new Paciente());
 			model.addAttribute("mensagem", new Mensagem("Sucesso ao cadastrar o paciente", TipoMensagem.SUCESSO));
@@ -40,20 +42,20 @@ public class PacienteController {
 			model.addAttribute("mensagem", new Mensagem("Erro ao fazer a convers�o de data/hora. Observe os padr�es a serem seguidos",
 					TipoMensagem.ERRO));
 		}
-		return "cadastrarPaciente";
+		return "paciente.adicionar.tiles";
 	}
 
-	@RequestMapping(value = "/listar.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/listar", method = RequestMethod.GET)
 	public String listar(Model model) {
 		List<Paciente> pacientes = service.findAllPacientes();
 		model.addAttribute("pacientes", pacientes);
-		return "listarPacientes";
+		return "paciente.listar.tiles";
 	}
 
-	@RequestMapping(value = "/excluir.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/excluir", method = RequestMethod.GET)
 	public String excluir(Integer idPaciente, Model model) {
 		service.deletePacienteById(idPaciente);
 		model.addAttribute("mensagem", new Mensagem("Sucesso ao excluir o paciente", TipoMensagem.SUCESSO));
-		return "forward:/paciente/listar.do";
+		return "forward:paciente.listar.tiles";
 	}
 }

@@ -1,8 +1,95 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tiles-definitions PUBLIC
-       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
-       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+"http://tiles.apache.org./dtds/tiles-config_3_0.dtd">
+
 <tiles-definitions>
-	<definition name="template" template="/template.jsp">
+	<definition name="layout.tiles" template="/WEB-INF/views/layout/baseLayout.jsp">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="header" value="/WEB-INF/views/layout/header.jsp"/>
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/layout/footer.jsp"/>
 	</definition>
+	
+	<!-- **HOME** -->
+	<definition name="home.login.tiles" extends="layout.tiles">
+		<put-attribute name="title" value="Clinica - Login"/>
+		<put-attribute name="body" value="/WEB-INF/views/home/login.jsp"/>
+	</definition>
+	<definition name="home.bemvindo.tiles" extends="layout.tiles">
+		<put-attribute name="title" value="Clinica -  Bem-Vindo!"/>
+		<put-attribute name="body" value="/WEB-INF/views/home/bemVindo.jsp"/>
+	</definition>
+	
+	<!-- ** Navegação ** -->
+	<definition name="medico.cadastrar.tiles" extends="layout.tiles" >
+		<put-attribute name="title" value="Clinica - cadastrar médicos"/>
+		<put-attribute name="body" value="/WEB-INF/views/medicos/cadastrarMedico.jsp"/>
+	</definition>
+	<definition name="realizar.atendimento.tiles" extends="layout.tiles" >
+		<put-attribute name="title" value="Clinica - realizar atendimento"/>
+		<put-attribute name="body" value="/WEB-INF/realizarAtendimento.jsp"/>
+	</definition>
+	
+	
+	<!-- ** Medico ** -->
+	<definition name="medico.adicionar.tiles" extends="layout.tiles" >
+		<put-attribute name="title" value="Clinica - cadastrar médicos"/>
+		<put-attribute name="body" value="/WEB-INF/views/medicos/cadastrarMedico.jsp"/>
+	</definition>
+	<definition name="medico.listar.tiles" extends="layout.tiles" >
+		<put-attribute name="title" value="Clínica - listar médicos"/>
+		<put-attribute name="body" value="/WEB-INF/views/medicos/listarMedicos.jsp"/>
+	</definition>
+	<definition name="medico.alterar.tiles" extends="layout.tiles" >
+		<put-attribute name="title" value="Clinica - alterar médicos"/>
+		<put-attribute name="body" value="/WEB-INF/views/medicos/alterarMedicos.jsp"/>
+	</definition>
+	
+	<!-- ** Paciente ** -->
+	<definition name="paciente.adicionar.tiles" extends="layout.tiles" >
+		<put-attribute name="title" value="Clinica - cadastrar pacientes"/>
+		<put-attribute name="body" value="/WEB-INF/views/pacientes/cadastrarPaciente.jsp"/>
+	</definition>
+	<definition name="paciente.listar.tiles" extends="layout.tiles" >
+		<put-attribute name="title" value="Clínica - listar pacientes"/>
+		<put-attribute name="body" value="/WEB-INF/views/pacientes/listarPacientes.jsp"/>
+	</definition>
+	<definition name="paciente.alterar.tiles" extends="layout.tiles" >
+		<put-attribute name="title" value="Clinica - alterar pacientes"/>
+		<put-attribute name="body" value="/WEB-INF/views/pacientes/alterarPacientes.jsp"/>
+	</definition>
+	
+	<!-- **Usuários** -->	
+	<definition name="usuario.listar.tiles" extends="layout.tiles">
+		<put-attribute name="title" value="Clinica - Listagem de usuários"/>
+		<put-attribute name="body" value="/WEB-INF/views/usuarios/listar.jsp"/>
+	</definition>
+	<definition name="usuario.adicionar.tiles" extends="layout.tiles">
+		<put-attribute name="title" value="Clinica - Adição de Usuários"/>
+		<put-attribute name="body" value="/WEB-INF/views/usuarios/adicionar.jsp"/>
+	</definition>
+	
+	<!-- ** Consulta ** -->
+	<definition name="consulta.adicionar.tiles" extends="layout.tiles" >
+		<put-attribute name="title" value="Clinica - cadastrar consultas"/>
+		<put-attribute name="body" value="/WEB-INF/views/consultas/cadastrarConsulta.jsp"/>
+	</definition>
+	<definition name="consulta.listar.tiles" extends="layout.tiles" >
+		<put-attribute name="title" value="Clínica - listar consultas"/>
+		<put-attribute name="body" value="/WEB-INF/views/consultas/listarConsultas.jsp"/>
+	</definition>
+	<definition name="consulta.alterar.tiles" extends="layout.tiles" >
+		<put-attribute name="title" value="Clinica - alterar consultas"/>
+		<put-attribute name="body" value="/WEB-INF/views/consultas/alterarConsultas.jsp"/>
+	</definition>
+	
+	
+	<!-- ** Atendimento ** -->
+	<definition name="realizar.atendimento.tiles" extends="layout.tiles" >
+		<put-attribute name="title" value="Clinica - realizar atendimento"/>
+		<put-attribute name="body" value="/WEB-INF/views/realizarAtendimento.jsp"/>
+	</definition>
+	
+	
 </tiles-definitions>

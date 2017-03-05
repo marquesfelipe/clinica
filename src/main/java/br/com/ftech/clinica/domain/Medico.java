@@ -4,11 +4,13 @@ package br.com.ftech.clinica.domain;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 import br.com.ftech.clinica.domain.enumeration.Especialidade;
 
 
 @Entity
+@PrimaryKeyJoinColumn(name="id")
 public class Medico extends Usuario {
 
 	private String nome;

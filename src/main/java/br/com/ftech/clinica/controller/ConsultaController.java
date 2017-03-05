@@ -28,7 +28,7 @@ public class ConsultaController {
 	private ConsultaService service;
 	
 
-	@RequestMapping(value="/agendar.do", method=RequestMethod.POST)
+	@RequestMapping(value="/agendar", method=RequestMethod.POST)
 	public String agendar(Consulta consulta, String data, String hora, Model model) {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -48,25 +48,25 @@ public class ConsultaController {
 			model.addAttribute("mensagem", new Mensagem("Erro ao fazer a convers�o de data/hora. Observe os padr�es a serem seguidos", TipoMensagem.ERRO));
 		}
 		
-		return "forward:/preparaCadastroConsulta.do";
+		return "forward:/preparaCadastroConsulta";
 	}
 	
-	@RequestMapping(value="/detalharConsulta.do", method=RequestMethod.GET)
+	@RequestMapping(value="/detalharConsulta", method=RequestMethod.GET)
 	public String detalhar(Integer idConsulta, Model model) {
 		Consulta consulta = service.findById(idConsulta);
 	 	model.addAttribute("consulta", consulta);
-		return "realizarAtendimento";
+		return "realizar.atendimento.tiles";
 	}
 	
-	@RequestMapping(value="/atender.do", method=RequestMethod.POST)
+	@RequestMapping(value="/atender", method=RequestMethod.POST)
 	public String gravarAtendimento(Consulta consulta, Model model) {
 		consulta.setDataAtendimento(new Date());
 		service.updateConsulta(consulta);
 		model.addAttribute("mensagem", new Mensagem("Sucesso ao cadastrar o atendimento", TipoMensagem.SUCESSO));
-		return "forward:/preparaCadastroAtendimento.do";
+		return "forward:/preparaCadastroAtendimento";
 	}
 	
-	@RequestMapping(value="/listarPorPaciente.do", method=RequestMethod.GET)
+	@RequestMapping(value="/listarPorPaciente", method=RequestMethod.GET)
 	public @ResponseBody List<Consulta> listarPorPaciente(Long idPaciente) {
 		return service.listarPorPaciente(idPaciente);
 	}
