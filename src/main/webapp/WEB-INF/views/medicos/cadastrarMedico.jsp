@@ -11,14 +11,17 @@
 					<div class="form-group">
 	  					<label for="nome">Nome:</label>
   						<springform:input id="nome" path="nome" cssClass="form-control" />
+	  					<springform:errors path="nome" cssStyle="color:red;"/>
 	  				</div>
 	  				<div class="form-group">
 	  					<label for="username">Login:</label>
   						<springform:input id="username" path="username" cssClass="form-control" />
-	  				</div>
+  						<springform:errors path="username" cssStyle="color:red;"/>
+  					</div>
 	  				<div class="form-group">
 	  					<label for="password">Senha:</label>	  								
   						<springform:password id="password" path="password" cssClass="form-control" />
+	  					<springform:errors path="password" cssStyle="color:red;"/>
 	  				</div>	  				
 	  				<div class="form-group">
 	  					<label for="especialidade">Especialidade:</label>

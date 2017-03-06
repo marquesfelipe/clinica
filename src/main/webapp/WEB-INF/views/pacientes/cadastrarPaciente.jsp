@@ -5,23 +5,27 @@
 <html>
 	<h1>Cadastrar Paciente</h1>
 			
-			<springform:form method="post" action="${pageContext.request.contextPath}/paciente/cadastrar.do" modelAttribute="paciente">
+			<springform:form method="post" action="${pageContext.request.contextPath}/paciente/cadastrar" modelAttribute="paciente">
 				<div style="width: 300px;">
 					<div class="form-group">
 	  					<label for="nome">Nome:</label>
 						<springform:input id="nome" path="nome" cssClass="form-control" />
+				  		<springform:errors path="nome" cssStyle="color:red;"/>
 					</div>
 					<div class="form-group">
 	  					<label for="username">Login:</label>
   						<springform:input id="username" path="username" cssClass="form-control" />
-	  				</div>
+  					 	<springform:errors path="username" cssStyle="color:red;"/>
+  					</div>
 	  				<div class="form-group">
 	  					<label for="password">Senha:</label>	  								
   						<springform:password id="password" path="password" cssClass="form-control" />
+	  	  				<springform:errors path="password" cssStyle="color:red;"/>
 	  				</div>	 
 					<div class="form-group">
-						<label for="data">Data de Nascimento (DD/MM/AAAA):</label>
-						<input id="data" type="date" name="data" maxlength="10" class="form-control" />
+						<label for="dataNascimento">Data de Nascimento (DD/MM/AAAA):</label>
+						<springform:input  id="dataNascimento" path="dataNascimento" cssClass="form-control"  />
+						<springform:errors path="dataNascimento" cssStyle="color:red;"/>
 					</div>
 				</div>
 						

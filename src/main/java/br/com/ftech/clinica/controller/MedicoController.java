@@ -1,10 +1,15 @@
 package br.com.ftech.clinica.controller;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,7 +29,13 @@ public class MedicoController {
 	private MedicoService service;
 
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
-	public String cadastrar(Medico medico, Model model) {
+	public String cadastrar(@ModelAttribute("medico") @Valid Medico medico,BindingResult result, Model model) {
+		
+		if(result.hasErrors()){	
+			model.addAttribute("especialidades", Especialidade.values());
+			return "medico.cadastrar.tiles";
+		}
+		
 		medico.setRole(Role.ROLE_MEDICO.toString());
 		service.saveMedico(medico);
 		model.addAttribute("medico", new Medico());

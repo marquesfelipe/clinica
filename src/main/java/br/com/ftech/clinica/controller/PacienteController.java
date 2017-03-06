@@ -5,9 +5,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,9 +30,14 @@ public class PacienteController {
 
 	@Autowired
 	private PacienteService service;
-
+	
 	@RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
-	public String cadastrar(Paciente paciente, String data, Model model) {
+	public String cadastrar(@ModelAttribute("paciente") @Valid Paciente paciente,BindingResult result, String data, Model model) {
+		
+		if(result.hasErrors()){	
+			return "paciente.adicionar.tiles";
+		}
+		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat format2 = new SimpleDateFormat("dd-MM-yyyy");
 		Date dataNascimento;
@@ -39,7 +51,7 @@ public class PacienteController {
 			model.addAttribute("paciente", new Paciente());
 			model.addAttribute("mensagem", new Mensagem("Sucesso ao cadastrar o paciente", TipoMensagem.SUCESSO));
 		} catch (ParseException e) {
-			model.addAttribute("mensagem", new Mensagem("Erro ao fazer a conversï¿½o de data/hora. Observe os padrï¿½es a serem seguidos",
+			model.addAttribute("mensagem", new Mensagem("Erro ao fazer a conversão de data/hora. Observe os padrï¿½es a serem seguidos",
 					TipoMensagem.ERRO));
 		}
 		return "paciente.adicionar.tiles";

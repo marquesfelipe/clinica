@@ -19,17 +19,17 @@ public class Usuario {
 	private Long id;
 	
 	@Column(name = "username", length = 15, nullable = false)
-	@Size(min = 3, max = 15, message = "O nome de usuário deve conter entre 3 e 10 caracteres")
-	@NotEmpty(message = "O nome de usuário é obrigatório")
+	@Size(min = 3, max = 15, message = "O login deve conter entre 3 e 10 caracteres")
+	@NotEmpty(message = "O login é obrigatório")
 	private String username;
 	
+	@Size(min = 3, max = 15, message = "A senha deve conter entre 3 e 10 caracteres")
+	@NotEmpty(message = "A senha é obrigatória")
 	@Column(name = "password", length = 150, nullable = false)
 	private String password;
 	
 	@Column(name = "role", length = 20, nullable =  false)
-	private String role;
-
-	
+	private String role;	
 
 	public String getUsername() {
 		return username;

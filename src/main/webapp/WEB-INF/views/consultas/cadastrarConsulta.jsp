@@ -58,7 +58,9 @@
 					</div>
 					<div class="form-group">
 						<label for="data">Data (DD/MM/AAAA):</label>
-						<input id="data" type="date" name="data" maxlength="10" class="form-control" />
+					<!--  	<input id="data" type="date" name="data" maxlength="10" class="form-control" />-->
+						<springform:input  id="dataConsulta" path="dataConsulta" cssClass="form-control"  />
+						<springform:errors path="dataConsulta" cssStyle="color:red;"/>
 					</div>
 					<div class="form-group">
 						<label for="hora">Hora (HH:MM):</label>
