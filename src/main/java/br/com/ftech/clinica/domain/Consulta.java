@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -27,16 +28,18 @@ public class Consulta {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_medico")
+	@NotNull(message = "O médico é obrigatório")
 	private Medico medico = new Medico();
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id_paciente")
+	@NotNull(message = "O paciente é obrigatório")
 	private Paciente paciente = new Paciente();
 	
 	@Column(name="data_consulta")
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="dd/MM/yyyy HH:mm:ss")
-	@Future(message = "a data deve estar no futuro")
+	@Future
 	private Date dataConsulta;
 	
 	@Column(name="data_atendimento")

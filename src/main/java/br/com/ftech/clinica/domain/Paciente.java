@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
@@ -21,8 +22,9 @@ public class Paciente extends Usuario{
 	private String nome;
 	
 	@Column(name="data_nascimento")
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@NotNull(message = "A data de nascimento é obrigatória")
 	@Past(message = "a data deve estar no passado")
+	@DateTimeFormat(pattern="dd/MM/yyyy")	
 	private Date dataNascimento;
 
 	

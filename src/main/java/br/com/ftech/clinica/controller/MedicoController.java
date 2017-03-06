@@ -1,7 +1,6 @@
 package br.com.ftech.clinica.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -15,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.ftech.clinica.domain.Medico;
-import br.com.ftech.clinica.domain.Role;
 import br.com.ftech.clinica.domain.enumeration.Especialidade;
+import br.com.ftech.clinica.domain.enumeration.Role;
 import br.com.ftech.clinica.service.MedicoService;
 import br.com.ftech.clinica.util.Mensagem;
 import br.com.ftech.clinica.util.Mensagem.TipoMensagem;

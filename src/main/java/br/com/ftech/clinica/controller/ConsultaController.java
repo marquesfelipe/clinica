@@ -46,9 +46,7 @@ public class ConsultaController {
 		try {
 			Date parsed = format.parse(data);
 			String dataFormatada = format2.format(parsed);
-			System.out.println(dataFormatada);
-
-			
+			System.out.println(dataFormatada);			
 			dataConsulta = sdf.parse(dataFormatada + " " + hora);
 			consulta.setDataConsulta(dataConsulta);
 			service.saveConsulta(consulta);

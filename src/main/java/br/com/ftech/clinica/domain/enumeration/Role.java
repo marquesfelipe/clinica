@@ -1,4 +1,4 @@
-package br.com.ftech.clinica.domain;
+package br.com.ftech.clinica.domain.enumeration;
 
 public enum Role {
 	
