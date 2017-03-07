@@ -6,8 +6,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<spring:url value="/resources/js/main.js" var="main"></spring:url>
-<script type="text/javascript" src="${mainJS}"></script>
+
 
 
 		<h1>Cadastrar Consulta</h1>
@@ -36,21 +35,20 @@
 				}
 
 
-				function isFutureDate(idate){
-				    var today = new Date().getTime(),
-				    idate = new Date(idate[2], idate[1] - 1, idate[0]).getTime();
-				    return (today - idate) < 0 ? true : false;
-				}
+		
 								
 				function checkDate(){
-				    var idate = $('#data'),
-				        dateReg = /(0[1-9]|[12][0-9]|3[01])[\/](0[1-9]|1[012])[\/]201[4-9]|20[2-9][0-9]/;
+				    var campodata = $('#data').val();
+				    var dataInformada = moment(campodata);
+				    var now = moment();
+				    var result = true; 
+					if (dataInformada >= now) {
+						result = false; 
+					}else {
+						alert("A data informada é Retroativa...\nInforme uma data Valida")
 
-				        if(isFutureDate(idate.value)){
-				        	alert( "Entered date is a future date");
-				         }
+					}
 				}
-				
 			</script> 
 			
 			<springform:form method="post" action="${pageContext.request.contextPath}/consulta/agendar.do" modelAttribute="consulta">

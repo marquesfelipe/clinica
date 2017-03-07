@@ -55,8 +55,8 @@ public class MedicoController {
 	@RequestMapping(value = "/excluir", method = RequestMethod.GET)
 	public String excluir(Integer idMedico, Model model) {
 		service.deleteMedicoById(idMedico);
-		model.addAttribute("mensagem", new Mensagem("Sucesso ao excluir o mï¿½dico", TipoMensagem.SUCESSO));
-		return "forward:medico.listar.tiles";
+		model.addAttribute("mensagem", new Mensagem("Sucesso ao excluir o médico", TipoMensagem.SUCESSO));
+		return "forward:/medico/listar/";
 	}
 
 	@RequestMapping(value="/listarPorEspecialidade", method=RequestMethod.GET)

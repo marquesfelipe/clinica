@@ -48,6 +48,6 @@ public class PacienteController {
 	public String excluir(Integer idPaciente, Model model) {
 		service.deletePacienteById(idPaciente);
 		model.addAttribute("mensagem", new Mensagem("Sucesso ao excluir o paciente", TipoMensagem.SUCESSO));
-		return "forward:paciente.listar.tiles";
+		return "forward:/paciente/listar";
 	}
 }

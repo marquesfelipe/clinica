@@ -24,7 +24,7 @@
 								<fmt:formatDate value="${p.dataNascimento}" pattern="dd/MM/yyyy" />
 							</td>
 							<td>
-								<a href="${pageContext.request.contextPath}/paciente/excluir.do?idPaciente=${p.id}">
+								<a href="${pageContext.request.contextPath}/paciente/excluir?idPaciente=${p.id}">
 									<input type="button" value="Excluir" class="btn btn-danger" />
 								</a>
 							</td>
