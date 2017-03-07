@@ -46,7 +46,7 @@
 						result = false; 
 					}else {
 						alert("A data informada é Retroativa...\nInforme uma data Valida")
-
+						$('#data').val(now.toDate());
 					}
 				}
 			</script> 
