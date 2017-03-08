@@ -20,7 +20,7 @@ public class MedicoServiceImpl implements MedicoService {
 	public List<Medico> listaMedicosPorEspecialidade(Especialidade especialidade) {
 		return repository.listaMedicosPorEspecialidade(especialidade);
 	}
-	
+
 	public List<Medico> findAllMedicos() {
 		return repository.findAll();
 	}
@@ -36,11 +36,7 @@ public class MedicoServiceImpl implements MedicoService {
 	public void saveMedico(Medico Medico) {
 		repository.save(Medico);
 	}
-
-	public void updateMedico(Medico Medico) {
-		repository.save(Medico);
-	}
-
+	
 	public void deleteMedicoById(long id) {
 		repository.delete(id);
 	}

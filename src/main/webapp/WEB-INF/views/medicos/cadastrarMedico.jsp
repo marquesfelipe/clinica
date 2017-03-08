@@ -34,6 +34,6 @@
 					</div>
 				</div>
 				
-				<input type="submit" value="Gravar" class="btn btn-primary" />
+				<input type="submit" value="Gravar" class="btn btn-success" />
 			</springform:form>
 </html>

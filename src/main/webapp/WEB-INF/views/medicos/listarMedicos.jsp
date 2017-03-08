@@ -11,8 +11,9 @@
 						<th>ID</th>
 						<th>Nome</th>
 						<th>Especialidade</th>
+						<th>Alterar</th>
 						<th>Excluir</th>
-					</tr>
+						</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="m" items="${medicos}">
@@ -21,8 +22,15 @@
 							<td>${m.nome}</td>
 							<td>${m.especialidade.descricao}</td>
 							<td>
+								<a href="${pageContext.request.contextPath}/medico/alterar/+${m.id}">
+								
+									<input type="button" value="Alterar" class="btn btn-danger" >
+								
+								</a>
+							</td>
+							<td>
 								<a href="${pageContext.request.contextPath}/medico/excluir?idMedico=${m.id}">
-									<input type="button" value="Excluir" class="btn btn-danger" />
+									<input type="button" value="Excluir" class="btn btn-primary" />
 								</a>
 							</td>
 						</tr>

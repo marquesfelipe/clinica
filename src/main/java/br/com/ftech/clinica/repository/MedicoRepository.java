@@ -18,5 +18,4 @@ public interface MedicoRepository extends JpaRepository<Medico, Long>{
 		@Query("Select m from Medico m where m.especialidade=:especialidade order by m.nome")
 		List<Medico> listaMedicosPorEspecialidade(@Param("especialidade")Especialidade especialidade);
 		
-
 }

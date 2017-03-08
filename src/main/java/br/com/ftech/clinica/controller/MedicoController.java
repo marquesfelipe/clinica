@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -51,7 +52,27 @@ public class MedicoController {
 
 		return "medico.listar.tiles";
 	}
+	
+	@RequestMapping(value = "/alterar/{id}", method = RequestMethod.GET)
+	public String alterar(@PathVariable("id") Long id, Model model) {		
+		Medico medico = service.findById(id);
+		model.addAttribute("medico", medico);	
+		model.addAttribute("especialidades", Especialidade.values());
+		return "medico.alterar.tiles";
+	}
 
+	@RequestMapping(value = "/alterar", method = RequestMethod.POST)
+	public String alterar(@ModelAttribute("medico") @Valid Medico medico, BindingResult result) {		
+		if (result.hasErrors()) {		
+			return "medico.alterar.tiles";
+		}		
+		medico.setRole(Role.ROLE_MEDICO.toString());
+		service.saveMedico(medico);		
+		return "redirect:/medico/listar";
+	}
+
+	
+	
 	@RequestMapping(value = "/excluir", method = RequestMethod.GET)
 	public String excluir(Integer idMedico, Model model) {
 		service.deleteMedicoById(idMedico);

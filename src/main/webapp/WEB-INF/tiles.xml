@@ -43,7 +43,7 @@
 	</definition>
 	<definition name="medico.alterar.tiles" extends="layout.tiles" >
 		<put-attribute name="title" value="Clinica - alterar médicos"/>
-		<put-attribute name="body" value="/WEB-INF/views/medicos/alterarMedicos.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/medicos/alterarMedico.jsp"/>
 	</definition>
 	
 	<!-- ** Paciente ** -->
