@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:sec="http://www.springframework.org/schema/security" 	
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
@@ -13,7 +14,9 @@
 		http://www.springframework.org/schema/tx
 		http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/mvc
-       	http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+       	http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/security
+	  	http://www.springframework.org/schema/security/spring-security-4.1.xsd">
 
 
 	<mvc:annotation-driven />
@@ -46,7 +49,7 @@
 		<property name="url"
 			value="jdbc:mysql://localhost:3306/clinica?useTimezone=true&amp;serverTimezone=UTC"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value="root"></property>
+		<property name="password" value="admin"></property>
 	</bean>
 
 
@@ -71,5 +74,35 @@
 	</bean>
 	<jpa:repositories base-package="br.com.ftech.clinica.repository"></jpa:repositories>
 
+	<!--** Spring Security ** -->
+	<bean id="userDetailsService"
+		class="br.com.ftech.clinica.security.ClinicaUserDetailsService"></bean>
+	<sec:http pattern="/resources/**" security="none"></sec:http>
+	<sec:http pattern="/home/login" security="none"></sec:http>
+	<sec:http use-expressions="true" auto-config="true">
+		<sec:intercept-url pattern="/**/adicionar" access="hasRole('ROLE_ADMIN')" />
+		<sec:intercept-url pattern="/**/alterar/**" access="hasRole('ROLE_ADMIN')" />
+		<sec:intercept-url pattern="/**/excluir/**" access="hasRole('ROLE_ADMIN')" />
+		<sec:intercept-url pattern="/**" access="isAuthenticated()" />
+		<sec:form-login login-page="/home/login"
+			default-target-url="/home/bemvindo" authentication-failure-url="/home/login"
+			username-parameter="username" password-parameter="password" />
+		<sec:logout logout-success-url="/home/login"
+			invalidate-session="true" />
+		<sec:csrf disabled="true" />
+	</sec:http>
+	<sec:authentication-manager>
+		<sec:authentication-provider
+			user-service-ref="userDetailsService">
+			<sec:password-encoder hash="bcrypt"></sec:password-encoder>
+		</sec:authentication-provider>
+		<sec:authentication-provider
+			user-service-ref="customAdmin">
+		</sec:authentication-provider>
+	</sec:authentication-manager>
 
+	<sec:user-service id="customAdmin">
+		<sec:user name="test" password="test"
+			authorities="ROLE_USER, ROLE_ADMIN, ROLE_MEDICO, ROLE_PACIENTE" />	
+	</sec:user-service>
 </beans>

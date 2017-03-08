@@ -9,7 +9,6 @@
 <spring:url value="/resources/css/bootstrap.min.css" var="bootstrapCSS"></spring:url>
 <spring:url value="/resources/js/bootstrap.min.js" var="bootstrapJS"></spring:url>
 <spring:url value="/resources/js/moment.js" var="moment"></spring:url>
-<spring:url value="/resources/css/font-awesome.min.css" var="font-awesome"></spring:url>
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -18,7 +17,6 @@
 <link href="${bootstrapCSS}" rel="stylesheet">
 <script type="text/javascript" src="${bootstrapJS}"></script>
 <script type="text/javascript" src="${moment}"></script>
-<link href="${font-awesome}" rel="stylesheet">
 
 </head>
 <body>

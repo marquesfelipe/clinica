@@ -23,10 +23,8 @@
 							<td>${m.especialidade.descricao}</td>
 							<td>
 								<a href="${pageContext.request.contextPath}/medico/alterar/+${m.id}">
-								
-									<input type="button" value="Alterar" class="btn btn-danger" >
-								
-								</a>
+									<input type="button" value="Alterar" class="btn btn-danger"/>
+                 				</a>			
 							</td>
 							<td>
 								<a href="${pageContext.request.contextPath}/medico/excluir?idMedico=${m.id}">

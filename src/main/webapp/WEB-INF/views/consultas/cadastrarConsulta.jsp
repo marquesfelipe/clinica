@@ -55,7 +55,7 @@
 				<div style="width: 300px;">
 					<div class="form-group">
 	  					<label for="especialidade">Especialidade:</label>
-						<select id="especialidade" onchange="carregaMedicosDaEspecialidade();" class="form-control">
+						<select id="especialidade" onchange="carregaMedicosDaEspecialidade();" class="form-control" required ="true">
 							<option value="">selecione</option>
 							<c:forEach items="${especialidades}" var="e">
 								<option value="${e}">${e.descricao}</option>

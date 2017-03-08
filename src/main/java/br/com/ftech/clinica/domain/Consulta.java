@@ -39,7 +39,6 @@ public class Consulta {
 	@Column(name="data_consulta")
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="dd/MM/yyyy HH:mm:ss")
-	@Future
 	private Date dataConsulta;
 	
 	@Column(name="data_atendimento")
