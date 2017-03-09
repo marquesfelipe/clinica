@@ -57,7 +57,7 @@
 			<ul class="nav navbar-nav">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Bem-vindo, ${principal.username}<span class="caret"></span></a>
+						aria-expanded="false">Bem-vindo, ${principal.username}&nbsp &nbsp<span class="glyphicon glyphicon-user"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="/clinica/logout">Sair</a></li>
 						</ul></li>

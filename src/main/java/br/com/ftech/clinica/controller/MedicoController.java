@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,7 +36,8 @@ public class MedicoController {
 			model.addAttribute("especialidades", Especialidade.values());
 			return "medico.cadastrar.tiles";
 		}
-		
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		medico.setPassword(encoder.encode(medico.getPassword()));
 		medico.setRole(Role.ROLE_MEDICO.toString());
 		service.saveMedico(medico);
 		model.addAttribute("medico", new Medico());

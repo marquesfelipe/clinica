@@ -1,0 +1,22 @@
+#form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+}
+
+#form-box {	
+    width: 300px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#form-box input {
+    font-size: large;
+}
+
+.error {
+    font-family: "Ubuntu";
+    color: red;
+    font-weight: normal
+}

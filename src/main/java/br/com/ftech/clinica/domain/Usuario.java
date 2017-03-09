@@ -23,7 +23,6 @@ public class Usuario {
 	@NotEmpty(message = "O login é obrigatório")
 	private String username;
 	
-	@Size(min = 3, max = 15, message = "A senha deve conter entre 3 e 10 caracteres")
 	@NotEmpty(message = "A senha é obrigatória")
 	@Column(name = "password", length = 150, nullable = false)
 	private String password;
